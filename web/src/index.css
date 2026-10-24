@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #15803d;
+  --primary-foreground: #ffffff;
+  --secondary: #e2e8f0;
+  --secondary-foreground: #0f172a;
+  --muted: #eef2f6;
+  --muted-foreground: #475569;
+  --accent: #e8edf3;
+  --accent-foreground: #0f172a;
+  --destructive: #b91c1c;
+  --border: #d3dbe5;
+  --input: #b8c3d1;
+  --ring: #0f172a;
+  --radius: 0.5rem;
+  --st-success: #15803d;
+  --st-failed: #b91c1c;
+  --st-running: #0369a1;
+  --st-neutral: #64748b;
+  --diff-add: #15803d;
+  --diff-add-bg: #15803d1a;
+  --diff-del: #b91c1c;
+  --diff-del-bg: #b91c1c14;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1b2336;
+  --card-foreground: #f8fafc;
+  --popover: #1b2336;
+  --popover-foreground: #f8fafc;
+  --primary: #22c55e;
+  --primary-foreground: #0f172a;
+  --secondary: #334155;
+  --secondary-foreground: #f8fafc;
+  --muted: #232c40;
+  --muted-foreground: #a3b1c6;
+  --accent: #2a3449;
+  --accent-foreground: #f8fafc;
+  --destructive: #f87171;
+  --border: #334155;
+  --input: #475569;
+  --ring: #f8fafc;
+  --st-success: #22c55e;
+  --st-failed: #f87171;
+  --st-running: #38bdf8;
+  --st-neutral: #94a3b8;
+  --diff-add: #4ade80;
+  --diff-add-bg: #22c55e1f;
+  --diff-del: #f87171;
+  --diff-del-bg: #ef44441c;
+}
+
+@theme inline {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-st-success: var(--st-success);
+  --color-st-failed: var(--st-failed);
+  --color-st-running: var(--st-running);
+  --color-st-neutral: var(--st-neutral);
+  --color-diff-add: var(--diff-add);
+  --color-diff-add-bg: var(--diff-add-bg);
+  --color-diff-del: var(--diff-del);
+  --color-diff-del-bg: var(--diff-del-bg);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    color-scheme: dark;
+  }
+  html:not(.dark) {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  button:not(:disabled),
+  [role="button"],
+  [role="checkbox"],
+  summary,
+  a {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

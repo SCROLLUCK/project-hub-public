@@ -1,0 +1,11 @@
+{
+  "roots": ["~/projects"],
+  "scanDepth": 2,
+  "pinned": ["my-app"],
+  "hidden": [],
+  "quotaHidden": [],
+  "tokens": { "gitlab.com": "<your-gitlab-token>" },
+  "projects": {
+    "my-app": { "devCommand": "npm run dev -- --port {port}", "devCwd": "frontend", "showcaseUrl": "http://my-app.local:8080" }
+  }
+}

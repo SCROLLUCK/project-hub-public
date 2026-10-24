@@ -1,0 +1,26 @@
+# Run with ./deploy/up.sh (it fills HUB_UID/HUB_GID/DOCKER_GID/GITHUB_TOKEN). Docs: docs/container.md
+name: project-hub
+services:
+  hub:
+    build: .
+    image: project-hub:latest
+    container_name: project-hub
+    restart: unless-stopped
+    # Host network: previews bind 127.0.0.1:<port> and must be reachable from the browser;
+    # `ss` sees the host's listeners. Host PID: /proc/<pid>/cwd maps a listener to its project.
+    network_mode: host
+    pid: host
+    user: "${HUB_UID:-1000}:${HUB_GID:-1000}"
+    group_add: ["${DOCKER_GID:-999}"]
+    environment:
+      HOME: ${HOME}
+      USER: ${USER:-dev}
+      # Name: http://project-hub.local:4380 (needs "127.0.0.1 project-hub.local" in /etc/hosts).
+      PROJECT_HUB_HOST: 127.0.0.1
+      PROJECT_HUB_PORT: ${PROJECT_HUB_PORT:-4380}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+    volumes:
+      # Same path as on the host: roots, worktrees, ~/.config/project-hub, ~/.claude, ~/.codex,
+      # obsidian.json and the paths stored in Claude sessions all resolve unchanged.
+      - ${HOME}:${HOME}
+      - /var/run/docker.sock:/var/run/docker.sock

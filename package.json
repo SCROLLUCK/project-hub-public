@@ -1,0 +1,14 @@
+{
+  "name": "project-hub",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": ["server", "web"],
+  "scripts": {
+    "dev": "concurrently -n server,web -c blue,green \"npm -w server run dev\" \"npm -w web run dev\"",
+    "test": "npm -w server run test && python3 -m unittest discover -s deploy/test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

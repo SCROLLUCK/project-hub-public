@@ -1,0 +1,11 @@
+[Unit]
+Description=Project Hub: host helper that launches a CDP Chrome per project
+
+[Service]
+# deploy/up.sh rewrites ExecStart to this checkout's absolute path when installing the unit.
+ExecStart=/path/to/project-hub/deploy/browser-helper.py
+Restart=on-failure
+KillMode=control-group
+
+[Install]
+WantedBy=default.target

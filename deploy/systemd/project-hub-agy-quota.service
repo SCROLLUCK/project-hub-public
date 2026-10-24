@@ -1,0 +1,8 @@
+[Unit]
+Description=Project Hub: refresh agy (Antigravity) quota file
+
+[Service]
+Type=oneshot
+# deploy/up.sh rewrites ExecStart to this checkout's absolute path when installing the unit.
+ExecStart=/path/to/project-hub/deploy/agy-quota.sh
+TimeoutStartSec=90
